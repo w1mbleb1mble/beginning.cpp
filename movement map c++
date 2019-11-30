@@ -1,0 +1,67 @@
+#include <iostream>
+#include <stdlib.h>
+#include <windows.h>
+#include <conio.h>
+
+using namespace std;
+
+int main()
+{
+
+    int x = 1;
+    int y = 1;
+    char ch = _getch();
+    while(ch == 'd' || ch == 'a' || ch == 'w' || ch == 's')
+    {
+        while(ch == 'd')
+        {
+            for(x; x>=0; x++)
+            {
+                system("cls");
+                for(int c=1; c<=x; c++)
+                {
+                    cout << " ";
+                }
+
+                cout << "0";
+                Sleep(100);
+                ch = _getch();
+
+                if(ch=='a' && x!=0)
+                {
+                    x=x-2;
+                }
+                if(ch=='w' || ch=='s')
+                {
+                    break;
+                }
+
+            }
+        }
+        while(ch == 's')
+        {
+            for(y; y>=0; y++)
+            {
+                system("cls");
+                for(int d=1; d<=y; d++)
+                {
+                    cout <<endl;
+                }
+
+                cout << "0";
+                Sleep(100);
+                ch = _getch();
+                if(ch=='w' && y!=0)
+                {
+                    y=y-2;
+                }
+                if(ch=='a' || ch=='d')
+                {
+                    break;
+                }
+
+            }
+        }
+    }
+    return 0;
+}
