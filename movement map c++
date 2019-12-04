@@ -1,67 +1,92 @@
 #include <iostream>
 #include <stdlib.h>
-#include <windows.h>
 #include <conio.h>
 
 using namespace std;
 
 int main()
 {
-
-    int x = 1;
-    int y = 1;
-    char ch = _getch();
-    while(ch == 'd' || ch == 'a' || ch == 'w' || ch == 's')
-    {
-        while(ch == 'd')
+	bool gameover = false;
+	char direction;
+	enum eFacing{up, down, left, right};
+	eFacing facing = up;
+	int Xpos = 1;
+	int Ypos = 1;
+	int Xmax = 20;
+	int Ymax = 20;
+	while(gameover == false)
+	{
+		direction = _getch();
+		system("cls");
+		if(direction == 'w')
         {
-            for(x; x>=0; x++)
+            if(Ypos!=1)
             {
-                system("cls");
-                for(int c=1; c<=x; c++)
-                {
-                    cout << " ";
-                }
-
-                cout << "0";
-                Sleep(100);
-                ch = _getch();
-
-                if(ch=='a' && x!=0)
-                {
-                    x=x-2;
-                }
-                if(ch=='w' || ch=='s')
-                {
-                    break;
-                }
-
+                Ypos--;
             }
+            facing = up;
         }
-        while(ch == 's')
+        if(direction == 'a')
         {
-            for(y; y>=0; y++)
+            if(Xpos!=1)
             {
-                system("cls");
-                for(int d=1; d<=y; d++)
-                {
-                    cout <<endl;
-                }
-
-                cout << "0";
-                Sleep(100);
-                ch = _getch();
-                if(ch=='w' && y!=0)
-                {
-                    y=y-2;
-                }
-                if(ch=='a' || ch=='d')
-                {
-                    break;
-                }
-
+                Xpos--;
             }
+            facing = left;
         }
-    }
-    return 0;
+        if(direction == 's')
+        {
+            if(Ypos!=Ymax-1)
+            {
+                Ypos++;
+            }
+            facing = down;
+        }
+        if(direction == 'd')
+        {
+            if(Xpos!=Xmax-1)
+            {
+                Xpos++;
+            }
+            facing = right;
+        }
+		for(int i = 0; i<=Ymax; i++)
+		{
+			for(int j=0; j<=Xmax; j++)
+			{
+			    if(i==Ymax || i==0 || j==Xmax || j==0)
+                {
+                    cout << "#";
+                }
+				else
+                {
+                    if(j==Xpos && i==Ypos)
+                    {
+                        if(facing==up)
+                        {
+                            cout << "^";
+                        }
+                        if(facing==down)
+                        {
+                            cout << "v";
+                        }
+                        if(facing==left)
+                        {
+                            cout << "<";
+                        }
+                        if(facing==right)
+                        {
+                            cout << ">";
+                        }
+                    }
+                    else
+                    {
+                        cout << " ";
+                    }
+                }
+
+			}
+			cout << endl;
+		}
+	}
 }
