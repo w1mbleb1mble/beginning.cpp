@@ -9,7 +9,7 @@ int main()
 	bool gameover = false;
 	char direction;
 	enum eFacing{up, down, left, right};
-	eFacing facing = up;
+	eFacing facing = down;
 	int Xpos = 1;
 	int Ypos = 1;
 	int Xmax = 20;
