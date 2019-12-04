@@ -16,7 +16,6 @@ int main()
 	int Ymax = 20;
 	while(gameover == false)
 	{
-		direction = _getch();
 		system("cls");
 		if(direction == 'w')
         {
@@ -88,5 +87,6 @@ int main()
 			}
 			cout << endl;
 		}
+		direction = _getch();
 	}
 }
