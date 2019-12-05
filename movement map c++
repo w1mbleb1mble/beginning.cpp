@@ -6,8 +6,10 @@ using namespace std;
 
 int main()
 {
+    enum eDirection{stop=0, uup, ddown, lleft, rright,};
+    eDirection direction;
 	bool gameover = false;
-	char direction;
+	char input;
 	enum eFacing{up, down, left, right};
 	eFacing facing = down;
 	int Xpos = 1;
@@ -17,37 +19,57 @@ int main()
 	while(gameover == false)
 	{
 		system("cls");
-		if(direction == 'w')
+		if(input!='w' || input!='s' || input!='a' || input!='d')
         {
+            direction = stop;
+        }
+		if(input == 'w')
+        {
+            direction = uup;
+        }
+        if(input == 'a')
+        {
+            direction = lleft;
+        }
+        if(input == 's')
+        {
+            direction = ddown;
+        }
+        if(input == 'd')
+        {
+            direction = rright;
+        }
+        switch(direction)
+        {
+        case uup:
             if(Ypos!=1)
             {
                 Ypos--;
             }
             facing = up;
-        }
-        if(direction == 'a')
-        {
-            if(Xpos!=1)
-            {
-                Xpos--;
-            }
-            facing = left;
-        }
-        if(direction == 's')
-        {
+            break;
+        case ddown:
             if(Ypos!=Ymax-1)
             {
                 Ypos++;
             }
             facing = down;
-        }
-        if(direction == 'd')
-        {
+            break;
+        case lleft:
+            if(Xpos!=1)
+            {
+                Xpos--;
+            }
+            facing = left;
+            break;
+        case rright:
             if(Xpos!=Xmax-1)
             {
                 Xpos++;
             }
             facing = right;
+        case stop:
+            break;
         }
 		for(int i = 0; i<=Ymax; i++)
 		{
@@ -82,10 +104,15 @@ int main()
                     {
                         cout << " ";
                     }
-               	}
+                }
 			}
 			cout << endl;
 		}
-		direction = _getch();
+		input = '|';
+		if(kbhit())
+        {
+            input = _getch();
+        }
+
 	}
 }
