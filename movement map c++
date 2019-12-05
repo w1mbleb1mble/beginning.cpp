@@ -8,22 +8,22 @@ int main()
 {
     enum eDirection{stop=0, uup, ddown, lleft, rright,};
     eDirection direction;
-	bool gameover = false;
-	char input;
-	enum eFacing{up, down, left, right};
-	eFacing facing = down;
-	int Xpos = 1;
-	int Ypos = 1;
-	int Xmax = 20;
-	int Ymax = 20;
-	while(gameover == false)
-	{
-		system("cls");
-		if(input!='w' || input!='s' || input!='a' || input!='d')
+    bool gameover = false;
+    char input;
+    enum eFacing{up, down, left, right};
+    eFacing facing = down;
+    int Xpos = 1;
+    int Ypos = 1;
+    int Xmax = 20;
+    int Ymax = 20;
+    while(gameover == false)
+    {
+        system("cls");
+        if(input!='w' || input!='s' || input!='a' || input!='d')
         {
             direction = stop;
         }
-		if(input == 'w')
+        if(input == 'w')
         {
             direction = uup;
         }
@@ -71,15 +71,15 @@ int main()
         case stop:
             break;
         }
-		for(int i = 0; i<=Ymax; i++)
-		{
-			for(int j=0; j<=Xmax; j++)
-			{
-			    if(i==Ymax || i==0 || j==Xmax || j==0)
+        for(int i = 0; i<=Ymax; i++)
+        {
+            for(int j=0; j<=Xmax; j++)
+            {
+                if(i==Ymax || i==0 || j==Xmax || j==0)
                 {
                     cout << "#";
                 }
-				else
+                else
                 {
                     if(j==Xpos && i==Ypos)
                     {
@@ -105,14 +105,13 @@ int main()
                         cout << " ";
                     }
                 }
-			}
-			cout << endl;
-		}
-		input = '|';
-		if(kbhit())
+            }
+            cout << endl;
+        }
+        input = '|';
+        if(kbhit())
         {
             input = _getch();
         }
-
-	}
+    }
 }
