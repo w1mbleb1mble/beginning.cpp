@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <conio.h>
+#include <windows.h>
 
 using namespace std;
 
@@ -8,22 +9,45 @@ int main()
 {
     enum eDirection{stop=0, uup, ddown, lleft, rright,};
     eDirection direction;
-    bool gameover = false;
-    char input;
-    enum eFacing{up, down, left, right};
-    eFacing facing = down;
-    int Xpos = 1;
-    int Ypos = 1;
-    int Xmax = 20;
-    int Ymax = 20;
-    while(gameover == false)
-    {
-        system("cls");
-        if(input!='w' || input!='s' || input!='a' || input!='d')
+    int frames = 0;
+	bool gameover = false;
+	char input;
+	enum eFacing{up, down, left, right};
+	eFacing facing = down;
+	int Xpos = 1;
+	int Ypos = 1;
+	int enXpos = 10;
+	int enYpos = 10;
+	int Xmax = 20;
+	int Ymax = 20;
+	while(gameover == false)
+	{
+		system("cls");
+		if(frames%10==0)
+        {
+            if(enXpos>Xpos)
+            {
+                enXpos--;
+            }
+            if(enYpos>Ypos)
+            {
+                enYpos--;
+            }
+            if(enXpos<Xpos)
+            {
+                enXpos++;
+            }
+            if(enYpos<Ypos)
+            {
+                enYpos++;
+            }
+
+        }
+		if(input!='w' || input!='s' || input!='a' || input!='d')
         {
             direction = stop;
         }
-        if(input == 'w')
+		if(input == 'w')
         {
             direction = uup;
         }
@@ -71,15 +95,15 @@ int main()
         case stop:
             break;
         }
-        for(int i = 0; i<=Ymax; i++)
-        {
-            for(int j=0; j<=Xmax; j++)
-            {
-                if(i==Ymax || i==0 || j==Xmax || j==0)
+		for(int i = 0; i<=Ymax; i++)
+		{
+			for(int j=0; j<=Xmax; j++)
+			{
+			    if(i==Ymax || i==0 || j==Xmax || j==0)
                 {
                     cout << "#";
                 }
-                else
+				else
                 {
                     if(j==Xpos && i==Ypos)
                     {
@@ -102,16 +126,42 @@ int main()
                     }
                     else
                     {
-                        cout << " ";
+                        if(j==enXpos && i==enYpos)
+                        {
+                            cout << "X";
+                        }
+                        else
+                        {
+                            cout << " ";
+                        }
                     }
                 }
-            }
-            cout << endl;
-        }
-        input = '|';
-        if(kbhit())
+			}
+			cout << endl;
+		}
+		input = '|';
+		if(kbhit())
         {
             input = _getch();
+        }
+        frames++;
+        if(frames>1000000)
+        {
+            frames=0;
+        }
+        if(Xpos==enXpos && Ypos==enYpos)
+        {
+            gameover = true;
+        }
+        cout << frames;
+	}
+	while(gameover==true)
+    {
+        system("cls");
+        cout << "Game Over \n press any key to try again" << endl;
+        if(kbhit())
+        {
+            main();
         }
     }
 }
