@@ -28,19 +28,19 @@ int main()
 		system("cls");
 		if(frames%10==0)
         {
-            if(enXpos>Xpos)
+            if(enXpos>Xpos&&enXpos<Xmax)
             {
                 enXpos--;
             }
-            if(enYpos>Ypos)
+            if(enYpos>Ypos&&enYpos<Ymax)
             {
                 enYpos--;
             }
-            if(enXpos<Xpos)
+            if(enXpos<Xpos&&enXpos>0)
             {
                 enXpos++;
             }
-            if(enYpos<Ypos)
+            if(enYpos<Ypos&&enYpos>0)
             {
                 enYpos++;
             }
@@ -207,7 +207,7 @@ int main()
         frames++;
         if(frames>1000000)
         {
-            frames=0;
+            frames=1;
         }
         if(enXpos==gunX && enYpos==gunY)
         {
