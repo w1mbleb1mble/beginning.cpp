@@ -8,25 +8,25 @@ int main()
     enum eDirection{stop=0, uup, ddown, lleft, rright,};
     eDirection direction;
     int frames = 0;
-	bool gameover = false;
-	char input;
-	enum eFacing{up, down, left, right};
-	eFacing facing = down;
-	int Xpos = 1;
-	int Ypos = 1;
-	int enXpos = 10;
-	int enYpos = 10;
-	int Xmax = 20;
-	int Ymax = 20;
-	int gunX;
-	int gunY;
-	bool gunisfired = false;
-	enum eGunD{gUp, gDown, gLeft, gRight};
-	eGunD gundirection;
-	while(gameover == false)
-	{
-		system("cls");
-		if(frames%10==0)
+    bool gameover = false;
+    char input;
+    enum eFacing{up, down, left, right};
+    eFacing facing = down;
+    int Xpos = 1;
+    int Ypos = 1;
+    int enXpos = 10;
+    int enYpos = 10;
+    int Xmax = 20;
+    int Ymax = 20;
+    int gunX;
+    int gunY;
+    bool gunisfired = false;
+    enum eGunD{gUp, gDown, gLeft, gRight};
+    eGunD gundirection;
+    while(gameover == false)
+    {
+        system("cls");
+        if(frames%10==0)
         {
             if(enXpos>Xpos&&enXpos<Xmax)
             {
@@ -44,13 +44,12 @@ int main()
             {
                 enYpos++;
             }
-
         }
-		if(input!='w' || input!='s' || input!='a' || input!='d')
+        if(input!='w' || input!='s' || input!='a' || input!='d')
         {
             direction = stop;
         }
-		if(input == 'w')
+        if(input == 'w')
         {
             direction = uup;
         }
@@ -130,7 +129,6 @@ int main()
         {
             if(gunisfired==true)
             {
-
                 switch(gundirection)
                 {
                 case gUp:
@@ -148,15 +146,15 @@ int main()
                 }
             }
         }
-		for(int i = 0; i<=Ymax; i++)
-		{
-			for(int j=0; j<=Xmax; j++)
-			{
-			    if(i==Ymax || i==0 || j==Xmax || j==0)
+        for(int i = 0; i<=Ymax; i++)
+        {
+            for(int j=0; j<=Xmax; j++)
+            {
+                if(i==Ymax || i==0 || j==Xmax || j==0)
                 {
                     std::cout << "#";
                 }
-				else
+                else
                 {
                     if(j==Xpos && i==Ypos)
                     {
@@ -196,11 +194,11 @@ int main()
                         }
                     }
                 }
-			}
-			std::cout << std::endl;
-		}
-		input = '|';
-		if(kbhit())
+            }
+            std::cout << std::endl;
+        }
+        input = '|';
+        if(kbhit())
         {
             input = _getch();
         }
@@ -223,8 +221,8 @@ int main()
             gameover = true;
         }
         std::cout << frames;
-	}
-	while(gameover==true)
+    }
+    while(gameover==true)
     {
         system("cls");
         std::cout << "Game Over \n press any key to try again" << std::endl;
